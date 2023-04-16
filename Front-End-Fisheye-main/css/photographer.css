@@ -1,5 +1,26 @@
+.user_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    margin: 0 100px;
+}
+
+.user_header .logo {
+    height: 50px;
+}
+
+/*_____________________________________________*/
+
 #contact_modal {
     display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
 }
 
 .modal {
@@ -39,6 +60,7 @@ form {
 form label {
     color: #312E2E;
     font-size: 36px;
+    margin-top: 10px;
 }
 
 form div {
@@ -54,11 +76,32 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 36px;
+}
+
+form textarea {
+    width: 100%;
+    height: 170px;
+    border: none;
+    border-radius: 5px;
+    font-size: 36px;
+}
+
+.send_button {
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    padding: 23px 50px;
+    text-align: center;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /*________________________________________*/
 
-.photograph-header {
+.banner {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
@@ -82,7 +125,7 @@ form input {
     cursor: pointer;
 }
 
-.profileImg {
+.banner_img {
     height: 200px;
     width: 200px;
     box-shadow: 0 5px 5px rgba(0,0,0,.2);
@@ -90,12 +133,12 @@ form input {
     border-radius: 50%;
     object-fit: cover;
     order: 3;
-    margin-right: 20px;
+    margin-right: 40px;
 }
 
 .profileInfo {
     order: 1;
-    margin-left: 20px;
+    margin-left: 40px;
 }
 
 #profileName {
@@ -109,59 +152,147 @@ form input {
     text-align: center;
     font-size: 24px;
     color: #901C1C;
+    text-align: left;
+    margin-top: 15px;
 }
 
 .infoTagline {
     text-align: center;
     font-size: 18px;
     color: #525252;
+    text-align: left;
+    margin-top: 15px;
 }
 
 .contact_button {
     order: 2;
 }
+/*_________________________________________*/
 
-.orderWrapper {
+.sort_relative {
+    position: relative;
+    z-index: 10;;
+}
+
+.sort_section {
     margin-top: 20px;
     margin-left: 100px;
     display: flex;
     flex-direction: row;
     gap: 20px;
     align-items: baseline;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.orderWrapper p {
+.sort_text {
     font-weight: 700;
     font-size: 18px;
 }
 
-.orderWrapper select {
-    background: #901C1C;
-    color: #FFFFFF;
-    padding: 10px 15px;
-    border: none;
+#dropdownWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    background-color: #901C1C;
+    padding: 15px 10px;
     border-radius: 5px;
 }
 
-.orderWrapper select option {
-    background-color: #901C1C;
+#dropdownWrapper:hover {
+    cursor: pointer;
+    box-shadow: 2px 5px 5px rgba(0,0,0,.3);
 }
 
-.orderWrapper hr {
+.dropdown_items_wrapper {
+    top: 15px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    /*background-color: #901C1C;*/
+    border-radius: 10px;
+}
+
+.dropdown_items_wrapper hr {
+    border: none;
+    border-top: 1px solid rgb(255,255,255,.3);
+    width:50%;
+    display: none;
+}
+
+.dropdown_item{
+    text-align: left;
+    background-color: transparent;
     color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    border-style: none;
+    width: 150px;
+    padding: 5px 0;
+    display: none;
+}
+
+.dropdown_item:hover {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.active {
+    display: block!important;
+    border-radius: 5px;
+}
+
+.rotate {
+    transform: rotate(180deg);
 }
 
 /*__________________________________*/
+
 .galleryWrapper {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 20px 100px;
+    justify-items: center;
+    width: 100%;
+    margin: 20px auto;
+    margin-top: 100px;
 }
 
 .cardWrapper {
+    width: 33.3%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* .cardWrapper div {
+    display: flex;
+    flex-direction: row;
+} */
+
+.cardImg {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: all .3s ease;
+}
+
+.cardVideo {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: all .5s ease;
+}
+
+.cardWrapper img:hover, .cardWrapper video:hover {
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.2);
+    transform: scale(1.05);
 }
 
 .cardInfoWrapper {
@@ -170,29 +301,18 @@ form input {
     align-items: center;
     margin-top: 10px;
     height: 50px;
-}
-
-.cardWrapper div {
-    display: flex;
-    flex-direction: row;
-}
-
-.cardImg {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-.cardVideo {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
+    width: 33.3%;
 }
 
 .cardTitle {
     white-space: nowrap;
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    width: 100%;
 }
 
 .likesNumber {
@@ -204,9 +324,44 @@ form input {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    margin-left: 10px;
+    width: 30%;
 }
 
 .likesIcon {
     width: 20px;
+}
+
+/*___________________________________________*/
+
+footer {
+    background-color: #DB8876;
+    position: fixed;
+    bottom: -5px;
+    right: 35px;
+    border-radius: 5px;
+    display: flex;
+    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 35px;
+
+}
+
+.footerLikesWrapper {
+    display: flex;
+    align-items: baseline;
+    margin-right: 60px;
+}
+
+.footerLikesNumber, .footerPrice{
+    font-size: 24px;
+    font-weight: 500;
+    color: #000;
+}
+
+.footerLikesIcon {
+    height: 18px;
+    color: #000;
 }
 

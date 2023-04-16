@@ -2,7 +2,8 @@ function photographerFactory(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
   
     const picture = `assets/photographers/${portrait}`;
-  
+    const fullLocation = city + "," + country;
+    
     function getUserCardDOM() {
       //create unique Url for each photographer
       const photographerUrl = `photographer.html?id=${id}`
@@ -51,6 +52,24 @@ function photographerFactory(data) {
 
       return articleEl;
     }
-  
-    return { name, picture, getUserCardDOM };
+    
+    function getUserHeaderDOM() {
+    
+      const photographHeader = document.querySelector(".banner");
+
+      const profileInfo = 
+      `<div class="profileInfo">
+          <h1 id="profileName">${name}</h1>
+          <p class="infoLocation">${fullLocation}</p>
+          <p class="infoTagline">${tagline}</p>
+      </div>
+      <button id="contactBtn"class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <img src="${picture}" alt= "picture of ${name}" class="banner_img"/>
+      `
+      photographHeader.innerHTML = profileInfo;
+      return photographHeader;
+    }
+    return { name, picture, getUserCardDOM, getUserHeaderDOM };
   }
+
+  
