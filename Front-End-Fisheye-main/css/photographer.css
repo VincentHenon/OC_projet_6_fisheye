@@ -198,6 +198,8 @@ form textarea {
     background-color: #901C1C;
     padding: 15px 10px;
     border-radius: 5px;
+    height: auto;
+    border: 1px solid green;
 }
 
 #dropdownWrapper:hover {
@@ -210,7 +212,6 @@ form textarea {
     left: 0;
     display: flex;
     flex-direction: column;
-    /*background-color: #901C1C;*/
     border-radius: 10px;
 }
 
@@ -219,6 +220,7 @@ form textarea {
     border-top: 1px solid rgb(255,255,255,.3);
     width:50%;
     display: none;
+    padding-bottom: 20px;
 }
 
 .dropdown_item{
@@ -289,7 +291,7 @@ form textarea {
     transition: all .5s ease;
 }
 
-.cardWrapper img:hover, .cardWrapper video:hover {
+.cardWrapper .cardImg:hover, .cardWrapper .cardVideo:hover {
     cursor: pointer;
     box-shadow: 5px 5px 10px rgba(0,0,0,.2);
     transform: scale(1.05);
@@ -332,6 +334,32 @@ form textarea {
     width: 20px;
 }
 
+.likesWrapper:hover {
+    cursor: pointer;
+}
+
+.shake {
+    animation: shake 0.25s infinite;
+  }
+
+@keyframes shake {
+    0% {
+      transform: translateX(0) scale(1);
+    }
+    25% {
+      transform: translateX(-2px);
+    }
+    50% {
+      transform: translateX(2px) scale(2);
+    }
+    75% {
+      transform: translateX(-2px);
+    }
+    100% {
+      transform: translateX(0) scale(1);
+    }
+  }
+
 /*___________________________________________*/
 
 footer {
@@ -361,6 +389,7 @@ footer {
 }
 
 .footerLikesIcon {
+    padding-left: 5px;
     height: 18px;
     color: #000;
 }

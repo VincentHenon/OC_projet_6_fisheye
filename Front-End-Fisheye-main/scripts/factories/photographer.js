@@ -2,7 +2,7 @@ function photographerFactory(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
   
     const picture = `assets/photographers/${portrait}`;
-    const fullLocation = city + "," + country;
+    const fullLocation = city + ", " + country;
     
     function getUserCardDOM() {
       //create unique Url for each photographer
@@ -39,7 +39,7 @@ function photographerFactory(data) {
       priceEl.classList.add("infos-price");
   
       // Add text
-      locationEl.textContent = `${city}, ${country}`;
+      locationEl.textContent = `${fullLocation}`;
       taglineEl.textContent = `"${tagline}"`;
       priceEl.textContent = `${price}€/jour`;
       nameEl.textContent = name;

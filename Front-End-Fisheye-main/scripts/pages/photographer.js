@@ -1,5 +1,3 @@
-//Mettre le code JavaScript lié à la page photographer.html
-
 // #1 get the current URL and his params. #2 get the value of the string "id" from the URL.
 const currentURLParams = new URL(window.location.href).searchParams;
 const idValue  = parseInt(currentURLParams.get("id")); // convert it as a number.
@@ -15,10 +13,10 @@ async function displayData(photographer) {
     
     const mediaItems = await getMedia(idValue); // get media Data from serverside
 
-    const dropMenu = getMediaMenu(mediaItems);
-    mainSection.appendChild(dropMenu);
+    const dropMenu = getMediaMenu(); // get the dropmenu model
+    mainSection.appendChild(dropMenu);  // display the menu model
 
-    dropdownMenuHandler(photographer, mediaItems);
+    dropdownMenuHandler(photographer, mediaItems); // handling the dropdown menu filter 
 
     const gallery = mediaFactory(photographer, mediaItems); // get the gallery model
     mainSection.appendChild(gallery); // display the gallery model
@@ -26,6 +24,7 @@ async function displayData(photographer) {
     const footer = getUserFooterDOM(photographer, mediaItems); // get footer model
     mainSection.appendChild(footer); //display the footer model 
     
+    likesHandler(mediaItems); // handling the likes' behavior
 }
 
 async function init() {
@@ -34,5 +33,3 @@ async function init() {
 }
 
 init();
-
-//export { photographer };

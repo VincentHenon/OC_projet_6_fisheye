@@ -1,10 +1,3 @@
-// 1_ scan all buttons
-// 2_ check which one is clicked on,
-// 3_ make it active by changing its class
-// 4_ and make the other ones non active.
-// 5_ then get the data attribute of the active button
-// 6_ and quickreload the DOM and sort the media list accordingly. method sortOf()
-
 function dropdownMenuHandler(photographer, mediaItems) {
 
   let sortedMediaItems;
@@ -17,6 +10,20 @@ function dropdownMenuHandler(photographer, mediaItems) {
 
   // when the mouse hovers the element
   dropdownWrapper.addEventListener("mouseenter", showMenu);
+  
+  // when the key Tab is pressed
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab') {
+        showMenu();
+    }
+  });
+
+  // when the key Esc is pressed
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        hideMenu();
+    }
+  });
 
   // when the mouse leaves the element
   dropdownWrapper.addEventListener("mouseleave", hideMenu);
@@ -59,6 +66,7 @@ function dropdownMenuHandler(photographer, mediaItems) {
     }
     // sort mediaItems
     sortedMediaItems = sortMedia(item, mediaItems);
+
     // update the DOM
     updateGallery(photographer, sortedMediaItems);
   }
@@ -98,24 +106,22 @@ function dropdownMenuHandler(photographer, mediaItems) {
   }
 
   function sortMedia(item, mediaItems) {
+    // find which buttons has been clicked
     const value = item.getAttribute("data-type");
     let sortedItems;
 
     switch (value) {
       case "popularity":
-        console.log("popularity");
         sortedItems = mediaItems.sort((a, b) => b.likes - a.likes);
         return sortedItems;
 
       case "date":
-        console.log("date");
         sortedItems = mediaItems.sort(
           (a, b) => new Date(b.date) - new Date(a.date)
         );
         return sortedItems;
 
       case "title":
-        console.log("title");
         sortedItems = mediaItems.sort((a, b) => a.title.localeCompare(b.title));
         return sortedItems;
     }
@@ -131,5 +137,7 @@ function dropdownMenuHandler(photographer, mediaItems) {
     const footerWrapper = document.querySelector(".footer");
     galleryWrapper.parentNode.replaceChild(gallery, galleryWrapper);
     footerWrapper.parentNode.replaceChild(footer, footerWrapper);
+
+    likesHandler(sortedMediaItems);
   }
 }

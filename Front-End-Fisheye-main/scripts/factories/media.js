@@ -1,6 +1,5 @@
 function mediaFactory(photographer, mediaItems) {
   const name = photographer.name.split(" ")[0]; //split the first part of the name to get the path.
-  const { price } = photographer;
   const gallery = document.createElement("div");
   gallery.classList.add("galleryWrapper");
   let galleryItems = [];
@@ -60,16 +59,15 @@ function getUserFooterDOM(photographer, mediaItems) {
   const footer = `
     <div class="footerLikesWrapper"">
       <p class="footerLikesNumber">${totalLikes}</p>
-      <img class="footerLikesIcon"src="assets/icons/heart.svg">
+      <img class="footerLikesIcon"src="assets/icons/heart2.svg">
     </div>
     <p class="footerPrice">${price}€/jour</p>
   `
   footerEl.innerHTML = footer;
-
   return footerEl
 }
 
-function getMediaMenu(mediaItems) {
+function getMediaMenu() {
   
   const menuEl = document.createElement("div");
   menuEl.classList.add("sort_relative")
@@ -98,4 +96,3 @@ function getMediaMenu(mediaItems) {
 
   return menuEl;
 }
-
