@@ -1,3 +1,7 @@
+//___________________________________________________________//
+//                        FUNCTIONS                          //
+//___________________________________________________________//
+
 // first get the list of the photographers
 async function getPhotographers() {
     try {
@@ -9,7 +13,7 @@ async function getPhotographers() {
     }
   }
 
-  // Then get the photographer by finding its id...   
+// Then get the photographer by finding its id...   
 async function getPhotographer(idValue) {
     const data = await getPhotographers();
     const photographers = data.photographers;

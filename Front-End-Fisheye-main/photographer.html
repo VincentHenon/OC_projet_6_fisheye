@@ -17,10 +17,10 @@
       </div>
     </main>
     <div id="contact_modal">
-			<div class="modal">
+			<div tabindex="1" class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img tabindex="0" class="closeIcon" src="assets/icons/close.svg" />
         </header>
 				<form class="modalForm">
 					<div class="formWrapper">
@@ -44,5 +44,6 @@
     <script src="/scripts/utils/contactForm.js"></script>
     <script async src="/scripts/utils/dropdownMenu.js" defer></script>
     <script async src="/scripts/utils/likes.js" defer></script>
+    <script async src="/scripts/utils/viewer.js" defer></script>
   </body>
 </html>

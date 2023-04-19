@@ -1,3 +1,7 @@
+/*__________________________________
+            HEADER
+  __________________________________*/
+
 .user_header {
     display: flex;
     flex-direction: row;
@@ -11,7 +15,9 @@
     height: 50px;
 }
 
-/*_____________________________________________*/
+/*__________________________________
+            MODAL FORM
+  __________________________________*/
 
 #contact_modal {
     display: none;
@@ -99,7 +105,9 @@ form textarea {
     cursor: pointer;
 }
 
-/*________________________________________*/
+/*__________________________________
+            BANNER
+  __________________________________*/
 
 .banner {
     background-color: #FAFAFA;
@@ -167,7 +175,10 @@ form textarea {
 .contact_button {
     order: 2;
 }
-/*_________________________________________*/
+
+/*__________________________________
+            DROPDOWN MENU
+  __________________________________*/
 
 .sort_relative {
     position: relative;
@@ -199,7 +210,6 @@ form textarea {
     padding: 15px 10px;
     border-radius: 5px;
     height: auto;
-    border: 1px solid green;
 }
 
 #dropdownWrapper:hover {
@@ -250,7 +260,9 @@ form textarea {
     transform: rotate(180deg);
 }
 
-/*__________________________________*/
+/*__________________________________
+            GALLERY
+  __________________________________*/
 
 .galleryWrapper {
     display: flex;
@@ -270,11 +282,6 @@ form textarea {
     margin: 10px 0;
 }
 
-/* .cardWrapper div {
-    display: flex;
-    flex-direction: row;
-} */
-
 .cardImg {
     width: 300px;
     height: 300px;
@@ -289,6 +296,11 @@ form textarea {
     object-fit: cover;
     border-radius: 5px;
     transition: all .5s ease;
+}
+
+.cardWrapper:focus {
+    font-weight: bold;
+    border: 1px solid blue 
 }
 
 .cardWrapper .cardImg:hover, .cardWrapper .cardVideo:hover {
@@ -360,7 +372,9 @@ form textarea {
     }
   }
 
-/*___________________________________________*/
+/*__________________________________
+            FOOTER
+  __________________________________*/
 
 footer {
     background-color: #DB8876;
@@ -373,7 +387,6 @@ footer {
     justify-content: space-between;
     align-items: center;
     padding: 20px 35px;
-
 }
 
 .footerLikesWrapper {
@@ -394,3 +407,77 @@ footer {
     color: #000;
 }
 
+/*__________________________________
+            VIEWER
+  __________________________________*/
+
+  .viewerModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+  }
+
+  .viewerWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: calc(100% + (100px * 2));
+    margin: 0 -100px;
+  }
+
+  .contentWrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .viewerImg {
+    width: 90%;
+    height: 90vh;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  .contentTitle {
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+    height: 5vh;
+    width: 90%;
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  .arrow {
+    width: 5vw;
+  }
+
+  .arrow:hover {
+    cursor: pointer;
+  }
+
+  .rightArrow {
+    transform: rotate(180deg);
+  }
+
+  .viewerCloseIcon {
+    display: absolute;
+    align-self: flex-start;
+    top: 0;
+    right: 0;
+    width: 75px;
+    height: 75px;
+    margin: 20px 20px;
+    border: 1px solid green;
+  }

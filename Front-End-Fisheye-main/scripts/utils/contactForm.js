@@ -1,23 +1,60 @@
-//import { photographer } from "../pages/photographer.js";
+//_________________________________________________________________//
+//                          DOM SELECTORS AND VARIABLES            //
+//_________________________________________________________________//
 
-function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
-}
-
-function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
-}
-
+const modal = document.getElementById("contact_modal");
+const contactBtn = document.querySelector(".contact_button");
+const closeIcon = document.querySelector(".closeIcon");
 const sendBtn = document.getElementById("sendBtn");
 
-// send buton handler
+
+//_________________________________________________________________//
+//                          FORM INTERACTIONS                      //
+//_________________________________________________________________//
+
+// if closeIcon is focus 
+// and the key Enter is pressed 
+// modal closes
+closeIcon.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        closeModal();
+    }
+})
+
+// if key Escape is pressed while modal focuses
+// modal closes
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        closeModal();
+    }
+})
+
+// if closeIcon is clicked 
+// modal closes
+closeIcon.addEventListener("click", (e) => {
+    (e).preventDefault();    
+    closeModal();
+})
+
+// send button handler
 sendBtn.addEventListener("click", (e)=> {
     e.preventDefault();
     console.log("formulaire validé!");
     closeModal();
 })
+
+
+//___________________________________________________________//
+//                        FUNCTIONS                          //
+//___________________________________________________________//
+
+function displayModal() {
+	modal.style.display = "block";
+}
+
+function closeModal() {
+    modal.style.display = "none";
+}
 
 function displayData(photographer) {
     const { name } = photographer;

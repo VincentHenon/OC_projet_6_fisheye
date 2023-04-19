@@ -25,6 +25,10 @@ async function displayData(photographer) {
     mainSection.appendChild(footer); //display the footer model 
     
     likesHandler(mediaItems); // handling the likes' behavior
+    viewerHandler(photographer, mediaItems);
+    //mainSection.appendChild(viewer);
+    /*const viewer = getViewer(photographer, mediaItems); // get the viewer model
+    mainSection.appendChild(viewer); //display the viewer model*/
 }
 
 async function init() {

@@ -63,7 +63,7 @@ function photographerFactory(data) {
           <p class="infoLocation">${fullLocation}</p>
           <p class="infoTagline">${tagline}</p>
       </div>
-      <button id="contactBtn"class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button tabindex="0" id="contactBtn"class="contact_button" onclick="displayModal()">Contactez-moi</button>
       <img src="${picture}" alt= "picture of ${name}" class="banner_img"/>
       `
       photographHeader.innerHTML = profileInfo;
