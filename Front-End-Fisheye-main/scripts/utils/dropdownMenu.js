@@ -48,10 +48,12 @@ function dropdownMenuHandler(photographer, mediaItems) {
 
     // when one of the elements is clicked
     dropdownItems.forEach((item) => {
+        
         // When menu's button is clicked
         item.addEventListener("click", (e) => {
         handlingClick(item, e);
         });
+
         // When click is released
         item.addEventListener("mouseup", hideMenu);
         
@@ -74,17 +76,12 @@ function dropdownMenuHandler(photographer, mediaItems) {
     function handlingClick(item, e) {
         e.preventDefault();
 
-        // non clicked items are hidden and get the active class removed
-        dropdownItems.forEach((el) => {
-        if (el !== item && el.classList.contains("active")) {
-            el.classList.remove("active");
-            el.style.display = "none";
-        }
-        });
-        // clicked item is toggled active
-        if (!item.classList.contains("active")) {
+        //remove active class from the items
+        const activeItem = dropdownItemsWrapper.querySelector(".active");
+        activeItem.classList.remove("active");
+        //add active class to the clicked item
         item.classList.add("active");
-        }
+
         // sort mediaItems
         sortedMediaItems = sortMedia(item, mediaItems);
 
@@ -160,5 +157,6 @@ function dropdownMenuHandler(photographer, mediaItems) {
         footerWrapper.parentNode.replaceChild(footer, footerWrapper);
 
         likesHandler(sortedMediaItems);
+        viewerHandler(photographer, sortedMediaItems);
     }
 }

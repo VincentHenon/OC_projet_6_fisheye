@@ -40,6 +40,8 @@ function likesHandler(mediaItems) {
         // toggle likes
         likesWrapperEl.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
+                e.stopPropagation();
+                e.preventDefault();     
                 likesToggle();
             }
         })

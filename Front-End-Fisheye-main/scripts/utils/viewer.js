@@ -1,106 +1,222 @@
 function viewerHandler(photographer, mediaItems) {
-    const articles = document.querySelectorAll(".cardWrapper");
+  const articles = document.querySelectorAll(".cardWrapper");
+  // Check current card
+  articles.forEach((article) => {
+    const thumb = article.firstElementChild;
+    const focusEl = article.querySelector(":focus");
 
-    articles.forEach((article)=> {
-        const thumb = article.firstElementChild;
-        thumb.addEventListener("click", (e) => {
-            
-            e.preventDefault();
+    //display viewer if card is clicked
+    thumb.addEventListener("click", (e) => {
+      displayViewer(article, photographer, mediaItems);
+    });
 
-            // get media Id from the article tag, parsed it as integer and use it to find the target object
-            const mediaId = parseInt(article.getAttribute("data-id"));
-            const mediaIndex = mediaItems.findIndex((obj) => obj.id === mediaId);
-            console.log("found Index is ", mediaIndex);
-            const foundItem = mediaItems[mediaIndex];
+    // display viewer if Enter is pressed on a focused card.
+    article.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        e.stopPropagation();
+        displayViewer(article, photographer, mediaItems);
+      }
+    });
+  });
+}
 
-            // create the viewer and display it
-            const viewer = createViewer(photographer, mediaItems, foundItem);
-            
-            // display the viewer in DOM
-            const mainSection = document.getElementById("main");
-            const viewerModalEl = document.createElement("div");
-            viewerModalEl.classList.add("viewerModal");
-            viewerModalEl.innerHTML = viewer;
-            mainSection.appendChild(viewerModalEl);
+function displayViewer(article, photographer, mediaItems) {
 
-            // function to handle buttons
-            viewerMechanics(photographer, mediaIndex, mediaItems);
-        })
-    })
+  // rebuild the photographer's name to use it on the path
+  const name = photographer.name.split(" ")[0]; // split the first part of the name to get the path.
+
+  // get media Id from the article tag, parse it as an integer and use it to find the target object
+  const mediaId = parseInt(article.getAttribute("data-id"));
+  const mediaIndex = mediaItems.findIndex((obj) => obj.id === mediaId);
+  const foundItem = mediaItems[mediaIndex];
+
+  // check foundItem to generate the right media element.
+  const { id, title, image, video } = foundItem;
+  let content = "";
+  content = video
+    ? `<video class="viewerImg" data-id="${id}" src="assets/photographers/${name}/${video}" alt="picture of ${title}" autoplay loop </video>
+    <h1 class="contentTitle">${title}</h1>`
+    : `<img class="viewerImg" data-id="${id}" src="assets/photographers/${name}/${image}" alt="picture of ${title}" />
+    <h1 class="contentTitle">${title}</h1>`;
+
+  // insert media and title and display in the document
+  const contentMedia = document.querySelector(".contentWrapper");
+  const temp = document.createElement("div");
+  temp.innerHTML = content;
+  const contentEl = temp;
+  contentMedia.innerHTML = "";
+  contentMedia.appendChild(contentEl);
+
+  document.querySelector(".viewerModal").classList.add("flex");
+  // function to handle viewer's functionnalities
+  viewerMechanics(photographer, mediaIndex, mediaItems);
 }
 
 function viewerMechanics(photographer, mediaIndex, mediaItems) {
-    let newIndex = mediaIndex;
-    console.log("old mediaIndex", mediaIndex);
-    console.log("mediaItems length", mediaItems.length);
+  const arrows = document.querySelectorAll(".arrow");
+  const viewer = document.querySelector(".viewerModal");
+  const viewerWrapper = document.querySelector(".viewerWrapper");
+  const closeIcon = document.querySelector(".viewerCloseIcon");
+  const video = viewer.querySelector("video");
 
-    //select arrows from viewer
-    const arrows = document.querySelectorAll(".arrow");
+  let spaceCounter = 0;
+  let savedTime = 0;
+  /*let isPressed = false;*/
+
+    // check if key pressed is Escape or Space
+    document.addEventListener("keydown", (e) => {
+      
+      // close the viewer
+      if (e.key === "Escape") {
+        viewer.classList.remove("flex");
+      }
+      // pause and resume video
+      if (e.code === "Space" && video) {
+        spaceCounter++;
+        //first hit will pause the video, the second hit will resume video
+        if (spaceCounter % 2 === 0) {
+          console.log("video is playing");
+          video.currentTime = savedTime;
+          video.play();
+        } else {
+          video.pause();
+          savedTime = video.currentTime;
+          console.log("video is paused");
+        }
+      }
+    });
 
     arrows.forEach((arrow) => {
-      arrow.addEventListener("click", (e) => {
-        e.preventDefault();
-        
-        const direction = arrow.getAttribute("data-direction");
-        
-        //if left arrow clicked
-        if (direction === "left") {
-            if (mediaIndex > 0) {
-                newIndex--;
-            } else {
-                newIndex = mediaItems.length - 1;
-            }
+      let direction = arrow.getAttribute("data-direction");
 
-        //if right arrow clicked
-        } else if (direction === "right") {
-            if (mediaIndex < mediaItems.length - 1) {
-                newIndex++;
-            } else {
-                newIndex = 0;
-            }
-        }
-        mediaIndex = newIndex;
-        console.log("new mediaIndex", mediaIndex);
-        //update the viewer content.
+      // change index if arrows are clicked
+      arrow.addEventListener("click", (e) => {
+        mediaIndex = arrowsHandle(
+          photographer,
+          mediaIndex,
+          mediaItems,
+          arrow,
+          e,
+          direction
+        );
         updateViewer(photographer, mediaItems, mediaIndex);
       });
+
+      // close modal on xmark click or esc key
+      closeIcon.addEventListener("click", (e) => {
+        viewer.classList.remove("flex");
+      });
+
+      // key pressed
+      document.addEventListener("keydown", (e) => {
+        console.log("isPressed is false");
+
+        if (e.key === "ArrowLeft" && !isPressed) {
+          isPressed = true;
+          console.log("isPressed is true");
+          console.log("3-1) key is pressed");
+          direction = "left";
+          mediaIndex = arrowsHandle(
+            photographer,
+            mediaIndex,
+            mediaItems,
+            arrow,
+            e,
+            direction
+          );
+        } else if (e.key === "ArrowRight" && !isPressed) {
+          isPressed = true;
+          console.log("isPressed is true");
+          console.log("3-1) key is pressed");
+          direction = "right";
+          mediaIndex = arrowsHandle(
+            photographer,
+            mediaIndex,
+            mediaItems,
+            arrow,
+            e,
+            direction
+          );
+        }
+      });
+
+      // to prevent auto-repeat
+      document.addEventListener("keyup", (e) => {
+        if (e.key === "ArrowRight") {
+          console.log("3-2) RIGHT key is no more pressed");
+          updateViewer(photographer, mediaItems, mediaIndex);
+          isPressed = false;
+        } else if (e.key === "ArrowLeft") {
+          console.log("3-2) LEFT key is no more pressed");
+          updateViewer(photographer, mediaItems, mediaIndex);
+          isPressed = false;
+        }
+      });
     });
+  
+  spaceCounter = 0;
+  console.log("3) ends viewerMechanics");
+
+}
+
+function arrowsHandle(
+  photographer,
+  mediaIndex,
+  mediaItems,
+  arrow,
+  e,
+  direction
+) {
+  let newIndex = mediaIndex;
+  console.log("4) starts arrowsHandle");
+  //if left arrow clicked
+  if (direction === "left") {
+    console.log("4-1) direction is LEFT");
+    console.log(mediaIndex);
+    console.log("-1");
+    newIndex--;
+    if (newIndex < 0) {
+      console.log("4-2) index is < 0");
+      newIndex = mediaItems.length - 1;
+    }
+    // return the updated index
   }
-
-  function updateViewer(photographer, mediaItems, mediaIndex) {
-    const viewer = document.querySelector(".contentWrapper");
-    const media = viewer.firstElementChild;
-    const { id, title, image, video } = mediaItems[mediaIndex];
-
-    const name = photographer.name.split(" ")[0]; // split the first part of the name to get the path.
-
-    // check the type of contentMedia to generate the right element.
-    let contentMedia = "";
-    video?contentMedia = `<video class="viewerImg" data-id="${id}" src="assets/photographers/${name}/${video}" alt="picture of ${title}" autoplay loop </video>`:
-      contentMedia = `<img class="viewerImg" data-id="${id}" src="assets/photographers/${name}/${image}" alt="picture of ${title}" />`;
-    
-    // graphic elements (arrow, Xmark)
-    const svgArrow = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#901C1C" stroke="none" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>`;
-    const closeViewerIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="#901C1C" stroke="none" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>`;
-    
-    // generate the viewer
-    let viewerModal = []; 
-    viewerModal = `
-                    <div class="viewerWrapper">
-                      <div class="leftArrow arrow" data-direction="left">${svgArrow}</div>
-                      <div class="contentWrapper">
-                        ${contentMedia}
-                        <h1 class="contentTitle">${title}</h1>
-                      </div>
-                      <div class="rightArrow arrow" data-direction="right">${svgArrow}</div>
-                      <div class="viewerCloseIcon">${closeViewerIcon}</div>
-                    </div>
-                  `;
-
-    // display the viewer in DOM
-    const mainSection = document.getElementById("main");
-    const viewerModalEl = document.createElement("div");
-    viewerModalEl.classList.add("viewerModal");
-    viewerModalEl.innerHTML = viewerModal;
-    mainSection.appendChild(viewerModalEl);  
+  if (direction === "right") {
+    console.log("4-1) direction is RIGHT");
+    console.log(mediaIndex);
+    console.log("+1");
+    newIndex++;
+    if (newIndex >= mediaItems.length) {
+      console.log("4-2) index is > media length");
+      newIndex = 0;
+    }
+    // return the updated index
   }
+  console.log("4) ends arrowsHandle");
+  return newIndex;
+}
+
+function updateViewer(photographer, mediaItems, mediaIndex) {
+  console.log("5) starts updateViewer");
+  // rebuild the photographer's name to use it on the path
+  const name = photographer.name.split(" ")[0]; // split the first part of the name to get the path.
+
+  // get media object from mediaItems based on the mediaIndex
+  const mediaObject = mediaItems[mediaIndex];
+
+  // check the type of contentMedia to generate the right element.
+  const { id, title, image, video } = mediaObject;
+  let content = "";
+  content = video
+    ? `<video class="viewerImg" data-id="${id}" src="assets/photographers/${name}/${video}" alt="picture of ${title}" autoplay loop </video>
+    <h1 class="contentTitle">${title}</h1>`
+    : `<img class="viewerImg" data-id="${id}" src="assets/photographers/${name}/${image}" alt="picture of ${title}" />
+    <h1 class="contentTitle">${title}</h1>`;
+
+  // replace the current content with the new content
+  const contentMedia = document.querySelector(".contentWrapper");
+  contentMedia.innerHTML = "";
+  contentMedia.innerHTML = content;
+  console.log("5) ends updateViewer");
+}

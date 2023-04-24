@@ -131,6 +131,12 @@ form textarea {
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    transition: all .3s ease;
+}
+
+.contact_button:hover {
+    background-color: #DB8876;
+    color: #000000;
 }
 
 .banner_img {
@@ -265,48 +271,111 @@ form textarea {
   __________________________________*/
 
 .galleryWrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-items: center;
-    width: 100%;
-    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5%;
+    margin: 0 100px;
     margin-top: 100px;
 }
 
 .cardWrapper {
-    width: 33.3%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px 0;
 }
 
-.cardImg {
-    width: 300px;
+.overflow_media {
+    width: 100%;
     height: 300px;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+    position: relative;
+}
+
+.overflow_media::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(219, 136, 118, 0.2);
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.cardImg, .cardVideo {
     object-fit: cover;
     border-radius: 5px;
-    transition: all .3s ease;
+    transition: all .5s ease-in-out;
+    object-position: center center;
 }
 
-.cardVideo {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
-    transition: all .5s ease;
+.cardWrapper:hover .galleryWrapper {
+    gap: 10px;
 }
 
-.cardWrapper:focus {
-    font-weight: bold;
-    border: 1px solid blue 
-}
-
-.cardWrapper .cardImg:hover, .cardWrapper .cardVideo:hover {
+.cardWrapper:hover {
     cursor: pointer;
-    box-shadow: 5px 5px 10px rgba(0,0,0,.2);
-    transform: scale(1.05);
+}
+
+.cardWrapper:hover .overflow_media {
+    width: 100%;
+    transition: all .5s ease-in-out;
+}
+
+.cardWrapper:focus .overflow_media {
+    width: 100%;
+    transition: all .5s ease-in-out;
+}
+
+.cardWrapper:hover .overflow_media::before {
+    opacity: 1;
+}
+
+.cardWrapper:focus .overflow_media::before {
+    opacity: 1;
+}
+
+.cardWrapper:hover .cardImg,
+.cardWrapper:hover .cardVideo{
+    width: 100%;
+    height: 300px;
+    transform: scale(1.2);
+    opacity: .8;
+    transition: all .5s ease-in-out;
+}
+
+.cardWrapper:focus .cardImg,
+.cardWrapper:focus .cardVideo{
+    width: 100%;
+    height: 300px;
+    transform: scale(1.2);
+    opacity: .8;
+    transition: all .5s ease-in-out;
+}
+
+.cardWrapper:hover .cardInfoWrapper {
+    width: 100%;
+    transition: all .5s ease-in-out;
+}
+
+.cardWrapper:focus .cardInfoWrapper {
+    width: 100%;
+    transition: all .5s ease-in-out;
+}
+
+.cardWrapper:not(:hover) .cardImg,
+.cardWrapper:not(:hover) .cardVideo {
+  width: 100%;
+  height: 300px;
+  transform: scale(1);
+  transition: all .5s ease-in-out;
 }
 
 .cardInfoWrapper {
@@ -315,7 +384,8 @@ form textarea {
     align-items: center;
     margin-top: 10px;
     height: 50px;
-    width: 33.3%;
+    width: 100%;
+    transition: all .5s ease-in-out;
 }
 
 .cardTitle {
@@ -411,17 +481,21 @@ footer {
             VIEWER
   __________________________________*/
 
-  .viewerModal {
+.viewerModal {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 20;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
     background-color: #FFF;
+  }
+
+.flex {
+    display: flex;
   }
 
   .viewerWrapper {
@@ -460,7 +534,10 @@ footer {
   }
 
   .arrow {
-    width: 5vw;
+    width: 3vw;
+    height: auto;
+    border: 1px solid green;
+    position: absolute;
   }
 
   .arrow:hover {
@@ -468,16 +545,20 @@ footer {
   }
 
   .rightArrow {
-    transform: rotate(180deg);
+    right: 20px;
+  }
+
+  .leftArrow {
+    left: 20px;
   }
 
   .viewerCloseIcon {
-    display: absolute;
+    position: absolute;
     align-self: flex-start;
     top: 0;
     right: 0;
-    width: 75px;
-    height: 75px;
+    width: 6vh;
+    /*height: 75px;*/
     margin: 20px 20px;
     border: 1px solid green;
   }

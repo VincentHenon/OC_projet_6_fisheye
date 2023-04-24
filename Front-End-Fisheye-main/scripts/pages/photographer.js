@@ -24,14 +24,17 @@ async function displayData(photographer) {
     const footer = getUserFooterDOM(photographer, mediaItems); // get footer model
     mainSection.appendChild(footer); //display the footer model 
     
+    previewVideo();
     likesHandler(mediaItems); // handling the likes' behavior
     viewerHandler(photographer, mediaItems);
-    //mainSection.appendChild(viewer);
-    /*const viewer = getViewer(photographer, mediaItems); // get the viewer model
-    mainSection.appendChild(viewer); //display the viewer model*/
 }
 
 async function init() {
+    document.addEventListener("keydown", (e)=>{
+        if (e.key=== "Tab") {
+            console.log("tab");
+        }
+    })
     const photographer = await getPhotographer(idValue); // get users Data from "server side"
     displayData(photographer);   
 }
