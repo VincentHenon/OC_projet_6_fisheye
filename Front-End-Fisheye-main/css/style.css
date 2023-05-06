@@ -9,6 +9,10 @@ html {
     margin: 0;
   }
 
+p {
+    line-height: 1.5;
+}
+
 a {
     text-decoration: none;
 }
@@ -69,12 +73,12 @@ body {
 }
 
 .photographer_section article a h2 {
-    color: #D3573C;
-    font-size: 36px;
+    color: #c34225;
+    font-size: 2.25em;
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
-    line-height: 47px;
+
 }
 
 .photographer_section article a:hover .profileImg {
@@ -99,18 +103,18 @@ body {
 }
 
 .infos-location {
-    font-size: 13px;
+    font-size: 0.8125em;
     color: #901C1C;
     
 }
 
 .infos-tagline {
-    font-size: 10px;
+    font-size: 0.625em;
     color: #000000;
-    line-height: 17px;
+    /*line-height: 17px;*/
 }
 
 .infos-price {
-    font-size: 9px;
-    color: #757575;
+    font-size: 0.5625em;
+    color: #3c3c3c;
 }

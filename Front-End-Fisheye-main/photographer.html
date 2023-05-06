@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -12,21 +12,21 @@
   </head>
   <body>
     <header class="user_header">
-      <a href="./index.html"
-        ><img src="assets/images/logo.png" class="logo"
-      /></a>
+      <a href="./index.html" aria-label="link to home page">
+        <img src="assets/images/logo.png" class="logo" alt="logo of the website"/>
+      </a>
     </header>
     <main id="main">
-      <div class="banner">
-        <button id="contactBtn" class="contact_button" onclick="displayModal()">
+      <div class="banner" aria-label="banner section">
+        <button id="contactBtn" class="contact_button" aria-label="contact button" onclick="displayModal()">
           Contactez-moi
         </button>
       </div>
     </main>
-    <div class="viewerModal">
-      <div class="viewerWrapper">
-        <div tabindex="2" class="leftArrow arrow" data-direction="left">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+    <div class="viewerModal" aria-hidden="true" aria-label="viewer section">
+      <div class="viewerWrapper" aria-label="viewer container">
+        <div tabindex="2" class="leftArrow arrow" data-direction="left" aria-label="left arrow container">
+          <svg aria-label="left arrow icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
             <path
               fill="#901C1C"
               stroke="none"
@@ -34,12 +34,12 @@
             />
           </svg>
         </div>
-        <div class="contentWrapper">
+        <div class="contentWrapper" aria-label="viewer's media content">
           <!-- image or video here -->
             <!-- title here -->
         </div>
-        <div tabindex="2" class="rightArrow arrow" data-direction="right">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+        <div tabindex="2" class="rightArrow arrow" data-direction="right" aria-label="right arrow container">
+          <svg xmlns="http://www.w3.org/2000/svg" aria-label="right arrow icon"viewBox="0 0 320 512">
             <path
               fill="#901C1C"
               stroke="none"
@@ -47,8 +47,8 @@
             />
           </svg>
         </div>
-        <div tabindex="2" class="viewerCloseIcon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+        <div tabindex="2" class="viewerCloseIcon" aria-label="xmark icon container">
+          <svg xmlns="http://www.w3.org/2000/svg" aria-label="xmark icon"viewBox="0 0 384 512">
             <path
               fill="#901C1C"
               stroke="none"
@@ -58,24 +58,24 @@
         </div>
       </div>
     </div>
-    <div id="contact_modal">
-      <div class="modal">
-        <header>
+    <div id="contact_modal" role="dialog" aria-hidden="true" aria-label="semi transparent modal's background">
+      <div class="modal" aria-label="form container">
+        <header aria-label="header of the modal">
           <h2>Contactez-moi</h2>
-          <img tabindex="0" class="closeIcon" src="assets/icons/close.svg" />
+          <img tabindex="0" class="closeIcon" src="assets/icons/close.svg" alt="x mark icon "/>
         </header>
         <form class="modalForm">
-          <div class="formWrapper">
+          <div class="formWrapper" aria-label="fields container">
             <label for="firstname">Prénom</label>
-            <input tabindex="0" type="text" id="firstName" name="votre prénom" required />
+            <input tabindex="0" type="text" id="firstName" name="votre prénom"  />
             <label for="lastname">Nom</label>
-            <input tabindex="0" type="text" id="lastName" name="votre nom" required />
+            <input tabindex="0" type="text" id="lastName" name="votre nom"  />
             <label for="email">Email</label>
-            <input tabindex="0" type="email" id="email" name="votre email" required />
+            <input tabindex="0" type="email" id="email" name="votre email"  />
             <label for="message">Votre message</label>
-            <textarea tabindex="0" id="message" name="votre message" required></textarea>
+            <textarea tabindex="0" id="message" name="votre message" ></textarea>
           </div>
-          <button tabindex="0" class="send_button" id="sendBtn">Envoyer</button>
+          <button tabindex="0" class="send_button" aria-label="button to send form" id="sendBtn">Envoyer</button>
         </form>
       </div>
     </div>
@@ -84,9 +84,9 @@
     <script src="/scripts/utils/fetchingData.js"></script>
     <script type="module" src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script async src="/scripts/utils/dropdownMenu.js" defer></script>
-    <script async src="/scripts/utils/previewVideo.js" defer></script>
-    <script async src="/scripts/utils/likes.js" defer></script>
-    <script async src="/scripts/utils/viewer.js" defer></script>
+    <script src="/scripts/utils/dropdownMenu.js"></script>
+    <script src="/scripts/utils/previewVideo.js"></script>
+    <script src="/scripts/utils/likes.js"></script>
+    <script src="/scripts/utils/viewer.js"></script>
   </body>
 </html>

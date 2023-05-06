@@ -113,9 +113,12 @@ function viewerMechanics(photographer, mediaIndex, mediaItems) {
 
     // key pressed
     document.addEventListener("keydown", (e) => {
+      console.log("isPressed is false");
 
       if (e.key === "ArrowLeft" && !isPressed) {
         isPressed = true;
+        console.log("isPressed is true");
+        console.log("3-1) key is pressed");
         direction = "left";
         mediaIndex = arrowsHandle(
           photographer,
@@ -127,6 +130,8 @@ function viewerMechanics(photographer, mediaIndex, mediaItems) {
         );
       } else if (e.key === "ArrowRight" && !isPressed) {
         isPressed = true;
+        console.log("isPressed is true");
+        console.log("3-1) key is pressed");
         direction = "right";
         mediaIndex = arrowsHandle(
           photographer,
@@ -142,9 +147,11 @@ function viewerMechanics(photographer, mediaIndex, mediaItems) {
     // to prevent auto-repeat
     document.addEventListener("keyup", (e) => {
       if (e.key === "ArrowRight") {
+        console.log("3-2) RIGHT key is no more pressed");
         updateViewer(photographer, mediaItems, mediaIndex);
         isPressed = false;
       } else if (e.key === "ArrowLeft") {
+        console.log("3-2) LEFT key is no more pressed");
         updateViewer(photographer, mediaItems, mediaIndex);
         isPressed = false;
       }
@@ -152,6 +159,7 @@ function viewerMechanics(photographer, mediaIndex, mediaItems) {
   });
 
   spaceCounter = 0;
+  console.log("3) ends viewerMechanics");
 }
 
 function arrowsHandle(

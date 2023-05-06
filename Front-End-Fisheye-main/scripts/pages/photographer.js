@@ -25,7 +25,7 @@ async function displayData(photographer) {
     mainSection.appendChild(footer); //display the footer model 
     
     previewVideo();
-    likesHandler(mediaItems); // handling the likes' behavior
+    likesHandler(mediaItems); // handling the likes' behaviour
     viewerHandler(photographer, mediaItems);
 }
 

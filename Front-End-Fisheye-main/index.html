@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+  <head>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -9,11 +10,13 @@
   </head>
   <body>
     <header class="index_header">
-        <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" class="logo" alt="logo of the website"/>
         <h1>Nos photographes</h1>
     </header>
     <main id="main">
-        <div class="photographer_section"></div>
+        <div class="photographer_section" aria-label="photographer's cards gallery"> 
+          <!-- photographer's cards get here  -->
+        </div>
     </main>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/utils/fetchingData.js"></script>

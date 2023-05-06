@@ -21,6 +21,7 @@ function photographerFactory(data) {
       
       // Set attributes
       linkEl.setAttribute("href", photographerUrl); //link to photographer
+      linkEl.setAttribute("aria-label", `link to ${name}'s page`)
       img.setAttribute("src", picture);
       img.setAttribute("alt", `picture of ${name}`);
 
@@ -58,7 +59,7 @@ function photographerFactory(data) {
       const photographHeader = document.querySelector(".banner");
 
       const profileInfo = 
-      `<div class="profileInfo">
+      `<div class="profileInfo" aria-label="profile informations">
           <h1 id="profileName">${name}</h1>
           <p class="infoLocation">${fullLocation}</p>
           <p class="infoTagline">${tagline}</p>

@@ -2,11 +2,19 @@
 //                          DOM SELECTORS AND VARIABLES            //
 //_________________________________________________________________//
 
+const mainEl = document.querySelector("#main");
+const headerEl = document.querySelector(".user_header");
 const modal = document.getElementById("contact_modal");
+const modalHeader = modal.getElementsByTagName("h2");
 const contactBtn = document.querySelector(".contact_button");
 const closeIcon = document.querySelector(".closeIcon");
 const sendBtn = document.getElementById("sendBtn");
+const nameEl = document.getElementById("profileName")
+console.log(mainEl);
+console.log(headerEl);
 
+/*const newTitle= modalHeader.innerHTML = `<h2>Contactez-moi<br>${name}</h2>`
+console.log(newTitle);*/
 
 //_________________________________________________________________//
 //                          FORM INTERACTIONS                      //
@@ -50,10 +58,18 @@ sendBtn.addEventListener("click", (e)=> {
 
 function displayModal() {
 	modal.style.display = "block";
+    modal.removeAttribute("aria-hidden")
+    mainEl.setAttribute("aria-hidden", "true");
+    headerEl.setAttribute("aria-hidden", "true");
+    
+    
 }
 
 function closeModal() {
     modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    mainEl.removeAttribute("aria-hidden");
+    headerEl.removeAttribute("aria-hidden");
 }
 
 function displayData(photographer) {

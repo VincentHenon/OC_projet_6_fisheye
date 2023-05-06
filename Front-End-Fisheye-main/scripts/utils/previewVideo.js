@@ -11,14 +11,12 @@ function previewVideo() {
             video.play();
           } else {
             video.currentTime = savedTime; // Resume the video from the saved time
-            console.log(savedTime);
             video.play();
           }
         });
   
         article.addEventListener("mouseleave", () => {
           savedTime = video.currentTime; // Save the current time
-          console.log(savedTime);
           video.pause();
         });
       }
