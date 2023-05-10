@@ -21,9 +21,9 @@ function photographerFactory(data) {
       
       // Set attributes
       linkEl.setAttribute("href", photographerUrl); //link to photographer
-      linkEl.setAttribute("aria-label", `link to ${name}'s page`)
+      linkEl.setAttribute("aria-label", `lien vers la page du photogrtaphe ${name}`)
       img.setAttribute("src", picture);
-      img.setAttribute("alt", `picture of ${name}`);
+      img.setAttribute("alt", `image du photographe ${name}`);
 
       // positionning elements inside the first part of the card
       articleEl.appendChild(profileEl);
@@ -65,7 +65,7 @@ function photographerFactory(data) {
           <p class="infoTagline">${tagline}</p>
       </div>
       <button tabindex="0" id="contactBtn"class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      <img src="${picture}" alt= "picture of ${name}" class="banner_img"/>
+      <img src="${picture}" alt= "image du photographe ${name}" class="banner_img"/>
       `
       photographHeader.innerHTML = profileInfo;
       return photographHeader;

@@ -2,7 +2,6 @@ function mediaFactory(photographer, mediaItems) {
   const name = photographer.name.split(" ")[0]; //split the first part of the name to get the path.
   const gallery = document.createElement("div");
   gallery.classList.add("galleryWrapper");
-  gallery.setAttribute("aria-label", "gallery section")
   let galleryItems = [];
 
   mediaItems.forEach((mediaItem) => {
@@ -12,14 +11,14 @@ function mediaFactory(photographer, mediaItems) {
     if (image) {
       const card = `
                 <article tabindex="2" data-id="${id}" class="cardWrapper">
-                        <div class="overflow_media" aria-label="media container">
-                          <img class="cardImg" data-id="${id}" src="assets/photographers/${name}/${image}" alt="picture of ${title}" />
+                        <div class="overflow_media">
+                          <img class="cardImg" data-id="${id}" src="assets/photographers/${name}/${image}" alt="photo du photographe ${title}" />
                         </div>
-                        <div class="cardInfoWrapper" aria-label="informations container">
+                        <div class="cardInfoWrapper">
                             <p class="cardTitle">${title}</p>
-                            <div tabindex="2" class="likesWrapper" aria-label="likes container">
+                            <div tabindex="2" class="likesWrapper">
                                 <p class="likesNumber">${likes}</p>
-                                <img class="likesIcon"src="assets/icons/heart.svg" alt="heart icon">
+                                <img class="likesIcon"src="assets/icons/heart.svg" alt="icone en forme de coeur">
                             </div>
                         </div>
                 </article>
@@ -29,14 +28,14 @@ function mediaFactory(photographer, mediaItems) {
     if (video) {
       const card = `
                     <article tabindex="2" data-id="${id}" class="cardWrapper">
-                      <div class="overflow_media" aria-label="media container">
-                        <video class="cardVideo" data-id="${id}" src="assets/photographers/${name}/${video}" alt="video of ${title}" ></video>                    
+                      <div class="overflow_media">
+                        <video class="cardVideo" data-id="${id}" src="assets/photographers/${name}/${video}" alt="video du photographe ${title}" ></video>                    
                       </div>
-                      <div class="cardInfoWrapper" aria-label="informations container">
+                      <div class="cardInfoWrapper">
                         <p class="cardTitle">${title}</p>
-                        <div tabindex="2" class="likesWrapper" aria-label="likes container">
+                        <div tabindex="2" class="likesWrapper">
                           <p class="likesNumber">${likes}</p>
-                          <img class="likesIcon"src="assets/icons/heart.svg" alt="heart icon">
+                          <img class="likesIcon"src="assets/icons/heart.svg" alt="icone en forme de coeur">
                         </div>
                       </div>
                     </article>
@@ -62,9 +61,9 @@ function getUserFooterDOM(photographer, mediaItems) {
   })
   
   const footer = `
-    <div class="footerLikesWrapper" aria-label="footer's likes' container">
+    <div class="footerLikesWrapper">
       <p class="footerLikesNumber">${totalLikes}</p>
-      <img class="footerLikesIcon"src="assets/icons/heart2.svg" alt="heart icon">
+      <img class="footerLikesIcon"src="assets/icons/heart2.svg" alt="icone en forme de coeur">
     </div>
     <p class="footerPrice">${price}€/jour</p>
   `
@@ -78,7 +77,7 @@ function getMediaMenu() {
   menuEl.classList.add("sort_relative")
   menuEl.setAttribute('aria-label', 'sorting menu section')
   const chevron = `
-                    <svg class="dropdown_svg" id="svg_arrow" aria-label="chevron icon" viewBox="0 0 10 10" width="20" height="20">
+                    <svg class="dropdown_svg" id="svg_arrow" aria-label="icon d'un chevron pour ouvrir ou fermer le menu" viewBox="0 0 10 10" width="20" height="20">
                       <path d="M1 5l4 4 4-4" stroke="white" stroke-linecap="round" stroke-width="1.2" fill="none" />
                     </svg>
                   `
@@ -87,7 +86,7 @@ function getMediaMenu() {
                 <div class="sort_section" aria-label="sorting section">
                   <p class="sort_text">Trier par </p>
                   <div id="dropdownWrapper" aria-label="dropdown menu container">
-                    <div class="dropdown_items_wrapper" aria-label="menu's items' list">
+                    <div class="dropdown_items_wrapper">
                       <button class="dropdown_item active" data-type="popularity">Popularité</button>
                       <hr>
                       <button class="dropdown_item" data-type="date">Date</button>

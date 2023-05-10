@@ -570,4 +570,5 @@ footer {
     width: 6vh;
     /*height: 75px;*/
     margin: 20px 20px;
+    cursor: pointer;
   }

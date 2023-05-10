@@ -12,21 +12,21 @@
   </head>
   <body>
     <header class="user_header">
-      <a href="./index.html" aria-label="link to home page">
-        <img src="assets/images/logo.png" class="logo" alt="logo of the website"/>
+      <a href="./index.html" aria-label="lien vers la page d'acceuil">
+        <img src="assets/images/logo.png" class="logo" alt="logo du site"/>
       </a>
     </header>
     <main id="main">
-      <div class="banner" aria-label="banner section">
-        <button id="contactBtn" class="contact_button" aria-label="contact button" onclick="displayModal()">
+      <div class="banner">
+        <button id="contactBtn" class="contact_button" onclick="displayModal()">
           Contactez-moi
         </button>
       </div>
     </main>
-    <div class="viewerModal" aria-hidden="true" aria-label="viewer section">
-      <div class="viewerWrapper" aria-label="viewer container">
-        <div tabindex="2" class="leftArrow arrow" data-direction="left" aria-label="left arrow container">
-          <svg aria-label="left arrow icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+    <div class="viewerModal" aria-hidden="true">
+      <div class="viewerWrapper">
+        <div tabindex="2" class="leftArrow arrow" data-direction="left" aria-label="icone d'un flèche vers la gauche pour charger le media précédent">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
             <path
               fill="#901C1C"
               stroke="none"
@@ -34,12 +34,12 @@
             />
           </svg>
         </div>
-        <div class="contentWrapper" aria-label="viewer's media content">
+        <div class="contentWrapper">
           <!-- image or video here -->
             <!-- title here -->
         </div>
-        <div tabindex="2" class="rightArrow arrow" data-direction="right" aria-label="right arrow container">
-          <svg xmlns="http://www.w3.org/2000/svg" aria-label="right arrow icon"viewBox="0 0 320 512">
+        <div tabindex="2" class="rightArrow arrow" data-direction="right" aria-label="icone d'un flèche vers la droite pour charger le prochain media">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
             <path
               fill="#901C1C"
               stroke="none"
@@ -47,8 +47,8 @@
             />
           </svg>
         </div>
-        <div tabindex="2" class="viewerCloseIcon" aria-label="xmark icon container">
-          <svg xmlns="http://www.w3.org/2000/svg" aria-label="xmark icon"viewBox="0 0 384 512">
+        <div tabindex="2" class="viewerCloseIcon" aria-label="icone en forme de croix pour fermer la fenêtre">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
             <path
               fill="#901C1C"
               stroke="none"
@@ -58,24 +58,24 @@
         </div>
       </div>
     </div>
-    <div id="contact_modal" role="dialog" aria-hidden="true" aria-label="semi transparent modal's background">
-      <div class="modal" aria-label="form container">
-        <header aria-label="header of the modal">
+    <div id="contact_modal" role="dialog" aria-hidden="true">
+      <div class="modal">
+        <header>
           <h2>Contactez-moi</h2>
-          <img tabindex="0" class="closeIcon" src="assets/icons/close.svg" alt="x mark icon "/>
+          <img tabindex="0" class="closeIcon" src="assets/icons/close.svg" alt="icon en forme de croix pour fermer le formulaire "/>
         </header>
         <form class="modalForm">
-          <div class="formWrapper" aria-label="fields container">
-            <label for="firstname">Prénom</label>
+          <div class="formWrapper">
+            <label for="firstName">Prénom</label>
             <input tabindex="0" type="text" id="firstName" name="votre prénom"  />
-            <label for="lastname">Nom</label>
+            <label for="lastName">Nom</label>
             <input tabindex="0" type="text" id="lastName" name="votre nom"  />
             <label for="email">Email</label>
             <input tabindex="0" type="email" id="email" name="votre email"  />
             <label for="message">Votre message</label>
             <textarea tabindex="0" id="message" name="votre message" ></textarea>
           </div>
-          <button tabindex="0" class="send_button" aria-label="button to send form" id="sendBtn">Envoyer</button>
+          <button tabindex="0" class="send_button" id="sendBtn">Envoyer</button>
         </form>
       </div>
     </div>
