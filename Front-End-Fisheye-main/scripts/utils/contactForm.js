@@ -10,11 +10,6 @@ const contactBtn = document.querySelector(".contact_button");
 const closeIcon = document.querySelector(".closeIcon");
 const sendBtn = document.getElementById("sendBtn");
 const nameEl = document.getElementById("profileName")
-console.log(mainEl);
-console.log(headerEl);
-
-/*const newTitle= modalHeader.innerHTML = `<h2>Contactez-moi<br>${name}</h2>`
-console.log(newTitle);*/
 
 //_________________________________________________________________//
 //                          FORM INTERACTIONS                      //

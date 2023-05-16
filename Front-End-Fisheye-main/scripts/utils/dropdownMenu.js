@@ -128,6 +128,7 @@ function dropdownMenuHandler(photographer, mediaItems) {
         const value = item.getAttribute("data-type");
         let sortedItems;
 
+        // different cases for sorting out the media cards
         switch (value) {
         case "popularity":
             sortedItems = mediaItems.sort((a, b) => b.likes - a.likes);

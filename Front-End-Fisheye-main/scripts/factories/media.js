@@ -10,13 +10,13 @@ function mediaFactory(photographer, mediaItems) {
 
     if (image) {
       const card = `
-                <article tabindex="2" data-id="${id}" class="cardWrapper">
+                <article tabindex="0" data-id="${id}" class="cardWrapper">
                         <div class="overflow_media">
                           <img class="cardImg" data-id="${id}" src="assets/photographers/${name}/${image}" alt="photo du photographe ${title}" />
                         </div>
                         <div class="cardInfoWrapper">
                             <p class="cardTitle">${title}</p>
-                            <div tabindex="2" class="likesWrapper">
+                            <div tabindex="0" class="likesWrapper">
                                 <p class="likesNumber">${likes}</p>
                                 <img class="likesIcon"src="assets/icons/heart.svg" alt="icone en forme de coeur">
                             </div>
@@ -27,13 +27,13 @@ function mediaFactory(photographer, mediaItems) {
     }
     if (video) {
       const card = `
-                    <article tabindex="2" data-id="${id}" class="cardWrapper">
+                    <article tabindex="0" data-id="${id}" class="cardWrapper">
                       <div class="overflow_media">
                         <video class="cardVideo" data-id="${id}" src="assets/photographers/${name}/${video}" alt="video du photographe ${title}" ></video>                    
                       </div>
                       <div class="cardInfoWrapper">
                         <p class="cardTitle">${title}</p>
-                        <div tabindex="2" class="likesWrapper">
+                        <div tabindex="0" class="likesWrapper">
                           <p class="likesNumber">${likes}</p>
                           <img class="likesIcon"src="assets/icons/heart.svg" alt="icone en forme de coeur">
                         </div>
@@ -75,7 +75,7 @@ function getMediaMenu() {
   
   const menuEl = document.createElement("div");
   menuEl.classList.add("sort_relative")
-  menuEl.setAttribute('aria-label', 'sorting menu section')
+
   const chevron = `
                     <svg class="dropdown_svg" id="svg_arrow" aria-label="icon d'un chevron pour ouvrir ou fermer le menu" viewBox="0 0 10 10" width="20" height="20">
                       <path d="M1 5l4 4 4-4" stroke="white" stroke-linecap="round" stroke-width="1.2" fill="none" />

@@ -4,12 +4,9 @@ function viewerHandler(photographer, mediaItems) {
   const arrowLeftIcon = viewer.querySelector(".leftArrow");
   const arrowRightIcon = viewer.querySelector(".rightArrow");
   const closeIcon = viewer.querySelector(".viewerCloseIcon");
-  const video = viewer.querySelector("video");
 
   let direction;
   let mediaIndex;
-  let spaceCounter = 0;
-  let savedTime = 0;
   let isViewerOpen= false;
 
   // Check current card
@@ -24,8 +21,6 @@ function viewerHandler(photographer, mediaItems) {
     // display viewer if Enter is pressed on a focused card.
     article.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
-        e.preventDefault();
-        //e.stopPropagation();
         mediaIndex = displayViewer(article, photographer, mediaItems); 
         isViewerOpen = true;
       }
@@ -34,11 +29,10 @@ function viewerHandler(photographer, mediaItems) {
 
   // check if a specific key is pressed
   document.addEventListener("keydown", (e) => {
-      e.preventDefault();
-      //e.stopPropagation();
 
       // escape = close the viewer
       if (e.key === "Escape" && isViewerOpen) {
+        e.preventDefault();
         viewer.classList.remove("flex");
         viewer.setAttribute("aria-hidden", "true");
         isViewerOpen = false;
@@ -57,24 +51,6 @@ function viewerHandler(photographer, mediaItems) {
         mediaIndex = arrowsHandle(mediaIndex, mediaItems, direction);
         updateViewer(photographer, mediaItems, mediaIndex);
       }
-
-      // pause and resume if video=true
-      if (video !== null && isViewerOpen) {
-        console.log("ok")
-        if (e.code === "Space") {
-          e.preventDefault();
-          spaceCounter++;
-          // first hit will pause the video, the second hit will resume video and so on...
-          if (spaceCounter % 2 === 0) {
-            video.currentTime = savedTime;
-            video.play();
-          } else {
-            video.pause();
-            savedTime = video.currentTime;
-          }
-          console.log(spaceCounter);
-        }
-    }
   });
 
   // check if one of those icons is clicked
@@ -101,6 +77,7 @@ function viewerHandler(photographer, mediaItems) {
   })
 };
 
+// Check the direction find the next or previous mediaItems
 function arrowsHandle(mediaIndex, mediaItems, direction) {
   let newIndex = mediaIndex;
 
@@ -144,7 +121,6 @@ function displayViewer(article, photographer, mediaItems) {
 
   document.querySelector(".viewerModal").classList.add("flex");
   document.querySelector(".viewerModal").removeAttribute("aria-hidden");
-  console.log("opening modal and displaying the media for the first time")
   return mediaIndex;
 }
 
@@ -168,5 +144,4 @@ function updateViewer(photographer, mediaItems, mediaIndex) {
   const contentMedia = document.querySelector(".contentWrapper");
   contentMedia.innerHTML = "";
   contentMedia.innerHTML = content;
-  console.log("updated");
 }
