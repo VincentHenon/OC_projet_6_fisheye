@@ -6,7 +6,7 @@ const idValue  = parseInt(currentURLParams.get("id")); // convert it as a number
 async function displayData(photographer) {
 
     const mainSection = document.getElementById("main");// select the tag "main"
-    const photographerModel = photographerFactory(photographer) // get the photographer model
+    const photographerModel = photographerFactory(photographer) // get the photographer model 
 
     const header = photographerModel.getUserHeaderDOM(); // get the header HTML
     mainSection.appendChild(header); // display the header model
@@ -24,7 +24,6 @@ async function displayData(photographer) {
     const footer = getUserFooterDOM(photographer, mediaItems); // get footer model
     mainSection.appendChild(footer); //display the footer model 
     
-    previewVideo(); // handling the preview video when hovering
     likesHandler(mediaItems); // handling the likes' behaviour
     viewerHandler(photographer, mediaItems); // handling the lightbox
 }

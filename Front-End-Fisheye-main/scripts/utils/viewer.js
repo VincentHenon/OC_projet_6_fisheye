@@ -75,7 +75,7 @@ function viewerHandler(photographer, mediaItems) {
     mediaIndex = arrowsHandle(mediaIndex, mediaItems, direction);
     updateViewer(photographer, mediaItems, mediaIndex);
   })
-};
+}
 
 // Check the direction find the next or previous mediaItems
 function arrowsHandle(mediaIndex, mediaItems, direction) {

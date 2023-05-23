@@ -39,7 +39,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 35px;
+    padding: 15px 35px;
     margin: auto;
 }
 
@@ -59,7 +59,7 @@
 .modal header h2 {
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
 }
 
 form {
@@ -72,7 +72,6 @@ form {
 form label {
     color: #312E2E;
     font-size: 36px;
-    margin-top: 10px;
 }
 
 form div {
@@ -223,7 +222,6 @@ form textarea {
     flex-direction: row;
     align-items: baseline;
     background-color: #901C1C;
-    padding: 15px 10px;
     border-radius: 5px;
     height: auto;
 }
@@ -233,20 +231,27 @@ form textarea {
     box-shadow: 2px 5px 5px rgba(0,0,0,.3);
 }
 
+/*hover*/
+#dropdownWrapper:hover .dropdown_item{
+    display: block;
+}
+
 .dropdown_items_wrapper {
-    top: 15px;
-    left: 0;
+    padding: 20px 10px;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
 }
 
-.dropdown_items_wrapper hr {
-    border: none;
-    border-top: 1px solid rgb(255,255,255,.3);
-    width:50%;
-    display: none;
-    padding-bottom: 20px;
+.dropdown_svg {
+    margin: 15px 18px;
+    transform: rotate(0);
+    transition: all .3s ease;
+}
+
+/*hover*/
+#dropdownWrapper:hover .dropdown_svg {
+    transform: rotate(180deg);
 }
 
 .dropdown_item{
@@ -258,7 +263,7 @@ form textarea {
     border: none;
     border-style: none;
     width: 150px;
-    padding: 5px 0;
+    padding: 5px 10px;
     display: none;
 }
 
@@ -266,14 +271,23 @@ form textarea {
     cursor: pointer;
     font-weight: 700;
 }
+.dropmenu_hr {
+    border: none;
+    border-top: 1px solid rgb(255, 255, 255);
+    width:130%;
+    display: none;
+    padding-bottom: 20px;
+    margin: 15px 10px 0 0;
+}
+
+/*hover*/
+#dropdownWrapper:hover .dropmenu_hr {
+    display: block;
+}
 
 .active {
     display: block!important;
     border-radius: 5px;
-}
-
-.rotate {
-    transform: rotate(180deg);
 }
 
 /*__________________________________
@@ -314,7 +328,7 @@ form textarea {
     width: 100%;
     height: 100%;
     background-color: rgba(219, 136, 118, 0.2);
-    z-index: 1;
+    /*z-index: 1;*/
     opacity: 0;
     transition: all 0.5s ease-in-out;
 }
@@ -570,4 +584,53 @@ footer {
     /*height: 75px;*/
     margin: 20px 20px;
     cursor: pointer;
+  }
+
+  /* ERROR 404 */
+
+  .error_404_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .error_404_big {
+    font-size: 64px;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #901C1C;
+    margin: 100px 0 20px 0;
+  }
+
+  .error_404_medium {
+    font-size: 32px;
+    font-weight: 700;
+    color: #901C1C;
+    margin-bottom: 20px;
+  }
+
+  .error_404_small {
+    font-size: 24px;
+    font-weight: 400;
+    color: #901C1C;
+    margin-bottom: 40px;
+  }
+
+  .error_404_btn {
+    font-size: 24px;
+    font-weight: 400;
+    border-radius: 5px;
+    border: none;
+    background-color: #901C1C;
+    color: #FFF;
+    cursor: pointer;
+    padding: 15px 20px;
+  }
+
+  .error_404_btn:hover {
+    border-radius: 5px;
+    border: none;
+    background-color: #DB8876;
+    color: #000;
   }

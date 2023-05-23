@@ -9,38 +9,7 @@ function dropdownMenuHandler(photographer, mediaItems) {
     const dropdownWrapper = document.getElementById("dropdownWrapper");
     const dropdownItemsWrapper = dropdownWrapper.querySelector(".dropdown_items_wrapper");
     const dropdownItems = dropdownItemsWrapper.querySelectorAll(".dropdown_item");
-    const dropdownArrow = document.getElementById("svg_arrow");
-    const dropdownSeparator = dropdownItemsWrapper.querySelectorAll("hr");
-
-
-    //_________________________________________________________________//
-    //                          MENU INTERACTIONS                      //
-    //_________________________________________________________________//
-
-    // when the mouse hovers the element 
-    // menu opens.
-    dropdownWrapper.addEventListener("mouseenter", showMenu);
-    
-    // if Enter is pressed while menu is focus
-    // menu opens.
-    dropdownWrapper.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            showMenu();
-        }
-    });
-
-    // if Escape is pressed while menu is focus
-    // menu closes.
-    dropdownWrapper.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            hideMenu();
-        }
-    });
-
-    // when the mouse leaves the element
-    // menu closes.
-    dropdownWrapper.addEventListener("mouseleave", hideMenu);
-
+    const chevron = document.getElementById("svg_arrow");
 
     //_________________________________________________________________//
     //                          MENU MECHANICS                         //
@@ -48,14 +17,11 @@ function dropdownMenuHandler(photographer, mediaItems) {
 
     // when one of the elements is clicked
     dropdownItems.forEach((item) => {
-        
+
         // When menu's button is clicked
         item.addEventListener("click", (e) => {
         handlingClick(item, e);
         });
-
-        // When click is released
-        item.addEventListener("mouseup", hideMenu);
         
         // sort the gallery by default (popularity) only when the page is loaded
         if(item && mediaItems) { 
@@ -68,7 +34,15 @@ function dropdownMenuHandler(photographer, mediaItems) {
         }
     });
 
-
+    // if chevron is focused and keydown Enter is pressed the menu opens
+    chevron.addEventListener("keydown", (e) => {
+        if (e.key === 'Enter') {
+            dropdownWrapper.classList.add("open");
+        }
+        else {
+            dropdownWrapper.classList.remove("open");
+        }
+    })
     //___________________________________________________________//
     //                        FUNCTIONS                          //
     //___________________________________________________________//
@@ -87,40 +61,6 @@ function dropdownMenuHandler(photographer, mediaItems) {
 
         // update the DOM
         updateGallery(photographer, sortedMediaItems);
-    }
-
-    function showMenu() {
-        // display non-active buttons
-        dropdownItems.forEach((item) => {
-        if (!item.classList.contains("active")) {
-            item.style.display = "block";
-        }
-        });
-
-        // Display <hr>
-        dropdownSeparator.forEach((separator) => {
-        separator.style.display = "block";
-        });
-
-        // Rotate arrow
-        dropdownArrow.style.transform = "rotate(180deg)";
-    }
-
-    function hideMenu() {
-        // hide non-active buttons
-        dropdownItems.forEach((item) => {
-        if (!item.classList.contains("active")) {
-            item.style.display = "none";
-        }
-        });
-
-        // remove <hr>
-        dropdownSeparator.forEach((separator) => {
-        separator.style.display = "none";
-        });
-
-        // cancel arrow's rotation
-        dropdownArrow.style.transform = "rotate(0)";
     }
 
     function sortMedia(item, mediaItems) {

@@ -77,7 +77,7 @@ function getMediaMenu() {
   menuEl.classList.add("sort_relative")
 
   const chevron = `
-                    <svg class="dropdown_svg" id="svg_arrow" aria-label="icon d'un chevron pour ouvrir ou fermer le menu" viewBox="0 0 10 10" width="20" height="20">
+                    <svg tabIndex="0" class="dropdown_svg" id="svg_arrow" aria-label="icon d'un chevron pour ouvrir ou fermer le menu" viewBox="0 0 10 10" width="20" height="20">
                       <path d="M1 5l4 4 4-4" stroke="white" stroke-linecap="round" stroke-width="1.2" fill="none" />
                     </svg>
                   `
@@ -87,11 +87,11 @@ function getMediaMenu() {
                   <p class="sort_text">Trier par </p>
                   <div id="dropdownWrapper" aria-label="dropdown menu container">
                     <div class="dropdown_items_wrapper">
-                      <button class="dropdown_item active" data-type="popularity">Popularité</button>
-                      <hr>
-                      <button class="dropdown_item" data-type="date">Date</button>
-                      <hr>
-                      <button class="dropdown_item" data-type="title">Titre</button>
+                      <button tabIndex="0" class="dropdown_item active" data-type="popularity">Popularité</button>
+                      <hr class="dropmenu_hr">
+                      <button tabIndex="0" class="dropdown_item" data-type="date">Date</button>
+                      <hr class="dropmenu_hr">
+                      <button tabIndex="0" class="dropdown_item" data-type="title">Titre</button>
                     </div>
                     ${chevron}
                   </div>
