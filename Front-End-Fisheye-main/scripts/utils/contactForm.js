@@ -40,13 +40,13 @@ closeIcon.addEventListener("click", (e) => {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     //Create an array to be displayed on the console.
-    let formData = [];
+    let formData = {};
     const inputs = document.querySelectorAll("input");
     const message = document.getElementById("message");
     inputs.forEach((input) => {
-      formData.push(input.value);
+        formData[input.name] = input.value;
     });
-    formData.push(message.value);
+    formData.message = message.value;
     console.log("Form submitted!");
     console.log(formData);
     closeModal();

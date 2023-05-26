@@ -219,22 +219,24 @@ form textarea {
 
 #dropdownWrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items: baseline;
     background-color: #901C1C;
     border-radius: 5px;
     height: auto;
 }
 
-#dropdownWrapper:hover {
+#dropdownWrapper:hover, #dropdownWrapper.displayMenu {
     cursor: pointer;
     box-shadow: 2px 5px 5px rgba(0,0,0,.3);
 }
 
 /*hover*/
-#dropdownWrapper:hover .dropdown_item{
+#dropdownWrapper:hover .dropdown_item, #dropdownWrapper.displayMenu .dropdown_item {
     display: block;
 }
+
+
 
 .dropdown_items_wrapper {
     padding: 20px 10px;
@@ -250,7 +252,7 @@ form textarea {
 }
 
 /*hover*/
-#dropdownWrapper:hover .dropdown_svg {
+#dropdownWrapper:hover .dropdown_svg, #dropdownWrapper.displayMenu .dropdown_svg {
     transform: rotate(180deg);
 }
 
@@ -281,7 +283,7 @@ form textarea {
 }
 
 /*hover*/
-#dropdownWrapper:hover .dropmenu_hr {
+#dropdownWrapper:hover .dropmenu_hr, #dropdownWrapper.displayMenu .dropmenu_hr {
     display: block;
 }
 

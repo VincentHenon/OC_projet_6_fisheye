@@ -86,6 +86,7 @@ function getMediaMenu() {
                 <div class="sort_section" aria-label="sorting section">
                   <p class="sort_text">Trier par </p>
                   <div id="dropdownWrapper" aria-label="dropdown menu container">
+                    ${chevron}  
                     <div class="dropdown_items_wrapper">
                       <button tabIndex="0" class="dropdown_item active" data-type="popularity">Popularité</button>
                       <hr class="dropmenu_hr">
@@ -93,7 +94,7 @@ function getMediaMenu() {
                       <hr class="dropmenu_hr">
                       <button tabIndex="0" class="dropdown_item" data-type="title">Titre</button>
                     </div>
-                    ${chevron}
+                    
                   </div>
                 </div>     
               `

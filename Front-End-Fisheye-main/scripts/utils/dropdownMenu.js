@@ -37,12 +37,18 @@ function dropdownMenuHandler(photographer, mediaItems) {
     // if chevron is focused and keydown Enter is pressed the menu opens
     chevron.addEventListener("keydown", (e) => {
         if (e.key === 'Enter') {
-            dropdownWrapper.classList.add("open");
-        }
-        else {
-            dropdownWrapper.classList.remove("open");
+            dropdownWrapper.classList.add("displayMenu");
         }
     })
+
+    // if close the menu if opened when pressing escape
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+                dropdownWrapper.classList.remove("displayMenu");
+            }
+    })
+
+
     //___________________________________________________________//
     //                        FUNCTIONS                          //
     //___________________________________________________________//

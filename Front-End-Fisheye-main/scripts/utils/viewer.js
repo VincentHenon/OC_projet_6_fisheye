@@ -13,7 +13,7 @@ function viewerHandler(photographer, mediaItems) {
   articles.forEach((article) => {
     const thumb = article.firstElementChild;
     //display viewer if card is clicked
-    thumb.addEventListener("click", (e) => {
+    thumb.addEventListener("click", () => {
       mediaIndex = displayViewer(article, photographer, mediaItems);
       isViewerOpen = true;
     });
@@ -56,21 +56,21 @@ function viewerHandler(photographer, mediaItems) {
   // check if one of those icons is clicked
   
   // xmark = close the modal
-  closeIcon.addEventListener("click", (e) => {
+  closeIcon.addEventListener("click", () => {
     viewer.classList.remove("flex");
     viewer.setAttribute("aria-hidden", "true");
     isViewerOpen = false;
   })
 
   // left arrow = previous media
-  arrowLeftIcon.addEventListener("click", (e) => {
+  arrowLeftIcon.addEventListener("click", () => {
     direction = "left";
     mediaIndex = arrowsHandle(mediaIndex, mediaItems, direction);
     updateViewer(photographer, mediaItems, mediaIndex);
   })
 
   // right arrow = next media
-  arrowRightIcon.addEventListener("click", (e) => {
+  arrowRightIcon.addEventListener("click", () => {
     direction = "right";
     mediaIndex = arrowsHandle(mediaIndex, mediaItems, direction);
     updateViewer(photographer, mediaItems, mediaIndex);
